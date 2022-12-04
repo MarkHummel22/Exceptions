@@ -8,6 +8,7 @@
 
 using namespace std;
 class invalidRangeException {};
+class invalidCharacterException{};
 char character(char[], char, int);
 
 
@@ -15,10 +16,13 @@ int main() {
 	char arr[52]{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
 	try {
-		cout << character(arr, 'A', 5) << endl;
+		cout << character(arr, 'A', -1) << endl;
 	}
 	catch(invalidRangeException){
 		cout << "The offset is out of range";
+	}
+	catch (invalidCharacterException) {
+		cout << "The character is out of range";
 	}
 	system("pause");
 
@@ -39,9 +43,12 @@ char character(char arr[52], char start, int offset) {
 			i++;
 		}
 		output = arr[(i - 1) + offset];
+		if (output < 'A' || output > 'z') {
+			throw invalidRangeException();
+		}
 	}
 	else
-		throw invalidRangeException();
+		throw invalidCharacterException();
 	return output;
 }
 
