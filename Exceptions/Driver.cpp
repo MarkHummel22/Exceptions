@@ -3,8 +3,6 @@
 // 12/3/22
 
 #include <iostream>
-#include <string>
-#include "Alphabet.h"
 
 using namespace std;
 class invalidRangeException {};
